@@ -5,9 +5,9 @@ export default class Blob extends Model {
     return super.init(
       {
         id: {
-          type: DataTypes.UUID,
-          defaultValue: DataTypes.UUIDV4,
-          primaryKey: true
+					type: DataTypes.INTEGER,
+					autoIncrement: true,
+					primaryKey: true,
         },
         name: {
           type: DataTypes.STRING,
@@ -18,7 +18,7 @@ export default class Blob extends Model {
           allowNull: false,
         },
         size: {
-          type: DataTypes.Int,
+          type: DataTypes.INTEGER,
           allowNull: false,
         },
       },

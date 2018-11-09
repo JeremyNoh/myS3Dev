@@ -12,10 +12,14 @@ export const db = new Sequelize(process.env.DATABASE_URL,  {
   }
 });
 
-// User.init(db, Sequelize);
-
 const modelUser = User.init(db, Sequelize)
 const modelBucket = Bucket.init(db, Sequelize)
+const modelBlob = Blob.init(db, Sequelize)
 
+// foreignKey de USER ==> Bucket (un user a * bucket )
 modelUser.hasMany(Bucket, {as : "buckets"})
 modelBucket.belongsTo(User, {as : "user"})
+
+// foreignKey de Bucket ==> Blob (un Bucket a * Blob )
+modelBucket.hasMany(Blob, {as : "blobs"})
+modelBlob.belongsTo(Bucket, {as : "bucket"})

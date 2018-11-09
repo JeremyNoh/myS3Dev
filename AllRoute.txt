@@ -24,3 +24,8 @@ GET | PUT | DELETE  ==> /users/:uuid/buckets/:id/blob
 REQUETTE
 -------------------
 curl -X POST -s -H "Content-Type:application/json" -d '{"nickname":"Jeremy","email":"jeremynohile@gmail.com","password":"123456789","password_confirmation":"123456789"}' localhost:4242/api/auth/register | jq
+
+
+creer & vérifié /opt/workspace/myS3
+créer  l'espace user $user_uuid
+créer un bucket $bucket_name

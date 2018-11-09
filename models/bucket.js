@@ -5,9 +5,9 @@ export default class Bucket extends Model {
     return super.init(
       {
         id: {
-          type: DataTypes.UUID,
-          defaultValue: DataTypes.UUIDV4,
-          primaryKey: true
+          type: DataTypes.INTEGER,
+					autoIncrement: true,
+					primaryKey: true,
         },
         name: {
           type: DataTypes.STRING,
