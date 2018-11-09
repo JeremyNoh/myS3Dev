@@ -9,7 +9,7 @@ const api = Router();
 api.get("/", async (req, res) => {
   try {
     const { uuid } = req.user.dataValues
-    const buckets = await Bucket.findAll();
+    const buckets = await Bucket.findAll({where : {user_uuid: uuid}});
     res.status(200).json({ data: { buckets }, meta: {} });
   } catch (err) {
     res.status(400).json({ err: err.message });
