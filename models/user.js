@@ -72,6 +72,20 @@ export default class User extends Model {
               }
               user.password_digest = hash;
             }
+          },
+          async beforeSave(user , option){
+            if (user.changed('password')) {
+              if (user.password !== user.password_confirmation) {
+                throw new Error("Passwords don't match :(");
+              }
+              const SALT_ROUND = 10;
+              const hash = await bcrypt.hash(user.password, SALT_ROUND);
+              console.log(hash);
+              if (!hash) {
+                throw new Error("Can't hash password.");
+              }
+              user.password_digest = hash;
+            }
           }
         }
       }

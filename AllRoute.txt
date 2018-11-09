@@ -1,0 +1,26 @@
+Route registration
+-------------------
+POST ==> /auth/register
+POST ==> /auth/login
+
+
+Route USER
+-------------------
+GET | PUT | DELETE  ==> /users/:uuid
+
+Route Bucket
+-------------------
+POST   ==> /users/:uuid/buckets
+GET | PUT | DELETE  ==>  /users/:uuid/buckets/:id
+
+Route BLOB
+-------------------
+
+POST ==> /users/:uuid/buckets/:id/blob
+GET | PUT | DELETE  ==> /users/:uuid/buckets/:id/blob
+
+
+
+REQUETTE
+-------------------
+curl -X POST -s -H "Content-Type:application/json" -d '{"nickname":"Jeremy","email":"jeremynohile@gmail.com","password":"123456789","password_confirmation":"123456789"}' localhost:4242/api/auth/register | jq
