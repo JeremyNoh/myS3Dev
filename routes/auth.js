@@ -6,6 +6,10 @@ import Mail from "../lib/mail";
 
 const api = Router();
 
+api.get("/register", (req, res) => {
+  res.render('../views/register.ejs');
+});
+
 api.post("/register", async (req, res) => {
   const { nickname, email, password, password_confirmation } = req.body;
 
@@ -32,6 +36,11 @@ api.post("/register", async (req, res) => {
   }
 });
 
+api.get("/login", (req, res) => {
+  res.render('../views/login.ejs');
+});
+
+
 api.post("/login", (req, res) => {
   passport.authenticate("local", { session: false }, (err, user) => {
     if (err) {
@@ -43,6 +52,7 @@ api.post("/login", (req, res) => {
     const payload = { uuid: user.uuid, nickname, email };
 
     const token = jwt.sign(payload, process.env.JWT_ENCRYPTION);
+    res.coookie('jwt', token)
 
     res.status(200).json({
       data: {

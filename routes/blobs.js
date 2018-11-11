@@ -3,8 +3,10 @@ import Blob from "../models/blob";
 import passport from '../middlewares/passport'
 import { pick } from "lodash"
 import mLog from "../lib/utils";
+import Filesystem  from "../lib/filesystem"
 
 let api = Router({mergeParams: true});
+const WORKSPACE_DIR = "/opt/Workspace/MyS3";
 
 // GET All BLOBS
 api.get("/", async (req, res) => {
@@ -35,8 +37,6 @@ api.post("/", async (req , res ) => {
     const {name, size, path} = req.body
     const blob = new Blob({ name, size, path , bucket_id  })
     // créer dans le system
-    // create directory -> name
-    // /opt/workspace/myS3/$user_uuid/$name
     await blob.save()
     res.status(201).json(blob)
   }
@@ -68,6 +68,7 @@ api.put('/:id', async (req, res) => {
 api.delete('/:id', async (req, res) => {
   try {
     const blob = await Blob.destroy({where: {id: req.params.id}})
+    // removeBlob(user, bucketName, blobName)
     res.status(200).json({ blob });
   } catch (err) {
     res.status(400).json({ err: `could not connect to database, err: ${err.message}` });

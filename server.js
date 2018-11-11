@@ -26,6 +26,10 @@ const start = async () => {
       database.sync({ force: false });
     }
 
+    app.get(/^\/(index)?$/, (req, res) => {
+      res.render('../views/index.ejs');
+});
+
     app.use("/api", routes);
 
     app.listen(port, err => {

@@ -3,7 +3,13 @@ import User from "../models/user";
 import { pick } from "lodash"
 const api = Router();
 
-api.get("/", async (req, res) => {
+// import cookieParser from "cookie-parser";
+// import jwt from "jsonwebtoken";
+
+let toto = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzQ5MTM3YWUtMTk1Mi00MGJmLWE4MjMtN2FmODY1NmVmZGRmIiwibmlja25hbWUiOiJqZWplamVqZWplYXplcnR5dWlvcCIsImVtYWlsIjoiamplamVqZUBnbWFpbC5jb20iLCJpYXQiOjE1NDE4NzYyMjl9.Qv_qlo7aDsk0N21CoYjVNRRWi-A6F6h4XTXA5RVSqFo';
+// {'auth': {'bearer': 'toto'}},
+
+api.get("/", async (req, res ) => {
   try {
     const users = await User.findAll();
     res.status(200).json({ data: { users }, meta: {} });
